@@ -1,0 +1,19 @@
+html, body, .container-fluid {
+  height: 95%;
+  background-color: #111;
+  font-family: 'Varela Round', sans-serif;
+}
+
+html {
+  -webkit-app-region: drag;
+}
+
+.container-fluid {
+  padding: 25px;
+}
+
+#loading {
+  padding-top: 30%;
+  width: 100%;
+  text-align: center;
+}

@@ -1,5 +1,6 @@
 require('dotenv').config();
-const { app, BrowserWindow } = require('electron');
+const { app, session, BrowserWindow } = require('electron');
+const path = require('path');
 
 
 let win;

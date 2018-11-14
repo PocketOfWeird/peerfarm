@@ -6,6 +6,7 @@
         "start": "electron ."
     },
     "dependencies": {
+        "chart.js": "^2.7.3",
         "dotenv": "^6.1.0",
         "lowdb": "^1.0.0"
     },

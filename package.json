@@ -5,7 +5,10 @@
     "scripts": {
         "start": "electron ."
     },
-    "dependencies": {},
+    "dependencies": {
+        "dotenv": "^6.1.0",
+        "lowdb": "^1.0.0"
+    },
     "devDependencies": {
         "electron": "^3.0.8"
     }

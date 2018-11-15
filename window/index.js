@@ -91,4 +91,4 @@ document.addEventListener('DOMContentLoaded', () => setTimeout(() => {
   hideLoadingIcon();
   setLastMeasureTimes(os.cpus());
   drawChart();
-}, 2000));
+}, 1250));

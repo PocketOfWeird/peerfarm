@@ -7,7 +7,7 @@ const send = (state, action) => {
     const ignoredActionTypes = [
         SET_KNOWN_HOSTS
     ];
-    if (!ignoredActionTypes.includes(action.type) || action.type.includes('_FROM_PEER')) {
+    if (!ignoredActionTypes.includes(action.type)) {
         let known_hosts = state.known_hosts || [];
         if (known_hosts.length > 0) {
             known_hosts.forEach(host => {

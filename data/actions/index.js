@@ -3,6 +3,7 @@ const ip = require('ip');
 
 
 const SET_NODE_INFO = 'SET_NODE_INFO';
+const SET_NODE_INFO_FROM_PEER = 'SET_NODE_INFO_FROM_PEER';
 const SET_USER = 'SET_USER';
 const SET_KNOWN_HOSTS = 'SET_KNOWN_HOSTS';
 
@@ -30,6 +31,7 @@ const setKnownHosts = data => ({
 
 module.exports = {
   SET_NODE_INFO,
+  SET_NODE_INFO_FROM_PEER,
   SET_USER,
   SET_KNOWN_HOSTS,
   setNodeInfo,

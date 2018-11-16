@@ -1,11 +1,14 @@
-const { SET_KNOWN_HOSTS } = require('../actions');
+const { SET_KNOWN_HOSTS, SET_NODE_INFO_FROM_PEER } = require('../actions');
 
 
 const known_hosts = (state=[], action) => {
   switch (action.type) {
     case SET_KNOWN_HOSTS:
-        console.log('set known hosts reducer:', action.payload);
-      return action.payload;
+        return action.payload;
+    case SET_NODE_INFO_FROM_PEER:
+        let newState = state.filter(host => host.ip !== action.payload.ip);
+        newState.push(action.payload);
+        return newState;
     default:
       return state;
   }

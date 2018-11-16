@@ -7,7 +7,7 @@ const { fetchOptions } = require('../tools');
 const getKnownNodes = () => {
     manager.dispatch(actions.setNodeInfo());
     let node_info = manager.getState('node_info');
-    fetch(
+    return fetch(
         `${process.env.AUTHORITY}/knownhosts`,
          fetchOptions(node_info)
      )

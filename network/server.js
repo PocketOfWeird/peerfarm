@@ -11,9 +11,7 @@ app.use(bodyParser.json());
 app.use(authenticate);
 
 app.post('/actionfrompeer', (req, res) => {
-    let action = req.body;
-    action.type += '_FROM_PEER';
-    manager.dispatchFromPeer(action);
+    manager.dispatch(req.body, true);
     res.send({ status: 200, message: 'Success' });
 });
 

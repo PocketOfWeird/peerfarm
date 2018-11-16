@@ -9,15 +9,24 @@ const getState = top_level_property => {
   return db.get(top_level_property).value();
 }
 
-const dispatch = passedAction => {
+const dispatch = action => {
   const state = db.getState();
-  const action = middleware(state, passedAction)
+  const newState = reducer(state, middleware(state, action));
+  db.setState(newState);
+  db.write();
+  return;
+}
+
+const dispatchFromPeer = action => {
+  const state = db.getState();
   const newState = reducer(state, action);
   db.setState(newState);
   db.write();
+  return;
 }
 
 module.exports = {
   getState,
-  dispatch
+  dispatch,
+  dispatchFromPeer
 };

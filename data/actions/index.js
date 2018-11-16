@@ -12,7 +12,7 @@ const setNodeInfo = () => ({
     hostname: os.hostname(),
     ip: ip.address(),
     type: os.type(),
-    cpus: op.cpus(),
+    cpus: os.cpus(),
     mem: os.totalmem(),
     uptime: os.uptime()
   }
@@ -30,5 +30,9 @@ const setKnownHosts = data => ({
 
 module.exports = {
   SET_NODE_INFO,
-  setNodeInfo
+  SET_USER,
+  SET_KNOWN_HOSTS,
+  setNodeInfo,
+  setUser,
+  setKnownHosts
 };

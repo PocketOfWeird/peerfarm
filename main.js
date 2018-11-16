@@ -1,6 +1,7 @@
 require('dotenv').config();
 const { app, BrowserWindow, Menu, Tray } = require('electron');
 const path = require('path');
+const logic = require('./logic');
 
 
 let win;

@@ -1,6 +1,14 @@
 const { exec } = require('child_process');
+const uuidV4 = require('uuid/v4');
 
-const settings = (startF, endF, proj, scene, outDir, format, cam, step=1, pad=4, resX=1920, resY=1080) => ({
+const settings = (renderId, startF, endF, proj, scene, outDir, format, cam, step=1, pad=4, resX=1920, resY=1080) => ({
+  active: false,
+  pending: true,
+  done: false,
+  canceled: false,
+  error: false,
+  errInfo: '',
+  renderId,
   startF,
   endF,
   proj,
@@ -19,6 +27,7 @@ const splitIntoChunks = (settings, chunkSize) => {
   for (let frame = settings.startF; frame <= settings.endF; frame+=chunkSize) {
     let chunk = {
       ...settings,
+      chunkId: uuidV4(),
       startF: frame,
       endF: Math.min(frame + chunkSize - 1, settings.endF)
     }
@@ -27,25 +36,25 @@ const splitIntoChunks = (settings, chunkSize) => {
   return chunks;
 }
 
-const startRender = (chunk, cb) => {
-    const command = chunk => `"${process.env.MAYA_BIN_DIR}\\Render.exe" -r file -s ${chunk.startF} -e ${chunk.endF} -b ${chunk.step} -proj "${chunk.proj}" -rd "${chunk.outDir}" -fnc name.#.ext -pad ${chunk.pad} -of ${chunk.format} -cam "${chunk.cam}" -x ${chunk.resX} -y ${chunk.resY} "${chunk.scene}"`;
+const startChunk = (chunk, cb) => {
+    const command = chunk => `"${process.env.MAYA_BIN_DIR}\\Render.exe" -r file -s ${chunk.startF} -e ${chunk.endF} -b ${chunk.step} -proj "${chunk.proj}" -rd "${chunk.outDir}" -fnc name.#.ext -pad ${chunk.pad} -of ${chunk.format} -cam "${chunk.cam}" -x ${chunk.resX} -y ${chunk.resY} -verb "${chunk.scene}"`;
     const child = exec(command(chunk));
     child.stdout.on('data', info => {
-      cb(null, null, info);
+      cb(false, false, info);
     });
     child.stderr.on('data', errorInfo => {
-      cb(null, errorInfo, null);
+      cb(false, errorInfo, false);
     });
     child.on('error', error => {
-      cb(error, null, null);
+      cb(error, false, false);
     });
     child.on('exit', (code, signal) => {
-      cb(null, signal, code, true);
+      cb(false, signal, code, false);
     });
 }
 
 module.exports = {
   settings,
   splitIntoChunks,
-  startRender
+  startChunk
 };

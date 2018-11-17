@@ -12,7 +12,7 @@ const getState = top_level_property => {
 const dispatch = (action, fromPeer) => {
   if (fromPeer) action.type += '_FROM_PEER';
   const state = db.getState();
-  const newState = reducer(state, middleware(state, action));
+  const newState = reducer(state, middleware(state, action, dispatch));
   db.setState(newState);
   db.write();
   return;

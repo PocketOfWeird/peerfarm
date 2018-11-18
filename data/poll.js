@@ -23,10 +23,10 @@ const pollForChunks = (manager) => {
             if (done) {
               if (errInfo) {
                 manager.dispatch(actions.errorChunk(id));
-                console.error(`Renderer exited with error code ${info} and\nerror signal ${errInfo}`);
+                manager.dispatch(actions.setChunkLog(id, `<error>Renderer exited with error code ${info} and\nerror signal ${errInfo}</error>`));
               } else {
                 manager.dispatch(actions.completeChunk(id));
-                console.log(`Renderer exited with code ${info}`);
+                manager.dispatch(actions.setChunkLog(id, `<info>Renderer exited with code ${info}</info>`));
               }
               return;
             }
@@ -35,12 +35,10 @@ const pollForChunks = (manager) => {
               console.error(error);
             }
             if (errInfo) {
-              // TODO: Figure out where to do with this info
-              console.log('Error from Renderer:\n', errInfo);
+              manager.dispatch(actions.setChunkLog(id, `<error>${errInfo}</error>`));
             }
             if (info) {
-              // TODO: Figure out where to do with this info
-              console.log('Info from Renderer:\n', info);
+              manager.dispatch(actions.setChunkLog(id, `<info>${info}</info>`));
             }
           });
         }

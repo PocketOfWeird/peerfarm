@@ -1,6 +1,6 @@
 const {
   SUBMIT_RENDER, START_CHUNK, CANCEL_CHUNK, ERROR_CHUNK,
-  COMPLETE_CHUNK
+  COMPLETE_CHUNK, SET_CHUNK_LOG
 } = require('../actions');
 
 
@@ -64,6 +64,15 @@ const chunks = (state={}, action) => {
           canceled: false,
           done: true,
           error: false
+        }
+      };
+    case SET_CHUNK_LOG:
+    case SET_CHUNK_LOG + '_FROM_PEER':
+      return {
+        ...state,
+        [action.payload.id]: {
+            ...state[action.payload.id],
+            log: state[action.payload.id].log += action.payload.log + '\n'
         }
       };
     default:

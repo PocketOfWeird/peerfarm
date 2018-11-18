@@ -13,7 +13,7 @@ const getKnownNodes = () => {
      )
      .then(response => response.json())
      .then(json => {
-         manager.dispatch(actions.setKnownHosts(json.data));
+         manager.setState(json.data);
      })
      .catch(error => console.error(error));
 }

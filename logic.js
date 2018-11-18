@@ -13,11 +13,11 @@ const uuidV4 = require('uuid/v4');
 let settings = maya.settings(
   uuidV4(),
   1,
-  400,
-  '\\\\art-render\\RenderShare\\Hartzler\\PeerTest',
-  '\\\\art-render\\RenderShare\\Hartzler\\PeerTest\\scenes\\test.mb',
-  '\\\\art-render\\RenderShare\\Hartzler\\PeerTest\\images',
+  120,
+  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation',
+  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\scenes\\FX_BOSS_Ocean.0006.mb',
+  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\images',
   'exr',
-  'perspShape1'
+  'perspShape'
 );
 manager.dispatch(actions.submitRender(settings, 5));

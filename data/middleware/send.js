@@ -16,7 +16,7 @@ const send = (state, action) => {
                   `http://${host.ip}:${process.env.PORT}/actionfrompeer`,
                   fetchOptions(null, 'POST', action)
               )
-              .then(response => response)
+              .then(response => console.log(response))
               .catch(error => error);
           });
       }

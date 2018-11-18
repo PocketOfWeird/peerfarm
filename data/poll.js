@@ -48,5 +48,6 @@ const pollForChunks = (manager) => {
 }
 
 module.exports = {
+  poller,
   pollForChunks
 };

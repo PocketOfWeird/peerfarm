@@ -12,5 +12,6 @@ const log = (state, action) => {
         .then(response => response)
         .catch(error => error);
     }
+    console.log(action);
     return action;
 }

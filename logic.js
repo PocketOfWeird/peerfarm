@@ -8,6 +8,7 @@ networkClient.getKnownNodes().then(() => manager.dispatch(actions.setNodeInfo())
 pollForChunks(manager);
 
 // testing only
+/*
 const maya = require('./tools/maya');
 const uuidV4 = require('uuid/v4');
 let settings = maya.settings(
@@ -21,3 +22,4 @@ let settings = maya.settings(
   'perspShape'
 );
 manager.dispatch(actions.submitRender(settings, 5));
+*/

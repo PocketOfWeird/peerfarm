@@ -1,7 +1,13 @@
+@font-face {
+    font-family: VarelaRound;
+    src: url('./Varela_Round/VarelaRound-Regular.ttf');
+}
+
 html, body, .container-fluid {
   height: 95%;
+  color: white;
   background-color: #000;
-  font-family: 'Varela Round', sans-serif;
+  font-family: VarelaRound, sans-serif;
 }
 
 html {

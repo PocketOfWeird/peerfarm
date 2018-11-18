@@ -1,10 +1,9 @@
 const send = require('./send');
+const log = require('./log');
 
 
 const middleware = (state, action) => {
-  return send(state, action);
-  // if more middleware needed, it would look like:
-  // return anotherMiddleWare(state, send(action));
+  return log(state, send(state, action));
 }
 
 module.exports = middleware;

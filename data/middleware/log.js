@@ -15,3 +15,5 @@ const log = (state, action) => {
     console.log(action);
     return action;
 }
+
+module.exports = log;

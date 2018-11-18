@@ -11,6 +11,7 @@ const send = (state, action) => {
       let known_hosts = state.known_hosts || [];
       if (known_hosts.length > 0) {
           known_hosts.forEach(host => {
+              console.log(`sending ${action.type} to http://${host.ip}:${process.env.PORT}/actionfrompeer`);
               fetch(
                   `http://${host.ip}:${process.env.PORT}/actionfrompeer`,
                   fetchOptions(null, 'POST', action)

@@ -12,7 +12,7 @@ const log = (state, action) => {
         .then(response => response)
         .catch(error => error);
     }
-    console.log(action);
+    console.log(action.type);
     return action;
 }
 

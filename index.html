@@ -9,20 +9,35 @@
 </head>
 
 <body>
-  <div class="container-fluid">
-    <div id="loading">
-      <img src="./styles/loading.svg" alt="peerfarm loading"/>
-    </div>
-    <table id="peers">
+  <div id="loading">
+    <img src="./styles/loading.svg" alt="peerfarm loading"/>
+  </div>
+  <div id="app" class="container-fluid">
+    <table v-if="hasPeers" id="peers">
       <caption>Peers</caption>
-      <tr>
-        <th>Hostname</th>
-        <th>IP</th>
-        <th>Type</th>
-        <th>CPUS</th>
-        <th>Memory</th>
-        <th>Uptime</th>
-      </tr>
+      <thead>
+        <tr>
+          <th>Hostname</th>
+          <th>IP</th>
+          <th>Type</th>
+          <th>CPUS</th>
+          <th>Memory</th>
+          <th>Uptime</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="peer in peers">
+          <td>{{peer.hostname}}</td>
+          <td>{{peer.ip}}</td>
+          <td>{{peer.type}}</td>
+          <td>{{peer.cpus.length}}</td>
+          <td>{{peer.mem}}</td>
+          <td>{{peer.uptime}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table id="renders">
+      
     </table>
     <canvas id="cpu-chart"></canvas>
   </div>

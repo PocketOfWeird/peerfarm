@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="peer in peers">
+        <tr v-for-object="peer in peers" :key="peer.id">
           <td>{{peer.hostname}}</td>
           <td>{{peer.ip}}</td>
           <td>{{peer.type}}</td>
@@ -37,7 +37,7 @@
       </tbody>
     </table>
     <table id="renders">
-      
+
     </table>
     <canvas id="cpu-chart"></canvas>
   </div>

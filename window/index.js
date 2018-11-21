@@ -21,7 +21,7 @@
 
   function updateRenders(app) {
     setInterval(() => {
-      app.renders = Object.values(manager.getState('renders'));
+      app.renders = manager.getState('renders');
     }, 2010)
   }
 

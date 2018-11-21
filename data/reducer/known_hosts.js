@@ -6,7 +6,7 @@ const known_hosts = (state=[], action) => {
     case SET_KNOWN_HOSTS:
         return action.payload;
     case SET_NODE_INFO + '_FROM_PEER':
-        let newState = state.filter(host => host.ip !== action.payload.ip);
+        let newState = state.filter(host => host.id !== action.payload.id);
         newState.push(action.payload);
         return newState;
     default:

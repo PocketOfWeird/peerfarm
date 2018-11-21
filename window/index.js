@@ -1,45 +1,41 @@
-
+(function(){
   const Vue = require('vue/dist/vue');
+  const ipc = require('electron').ipcRenderer;
   const manager = require('./data/state_manager');
+  let app;
+
+
   function hideLoadingIcon() {
     let loading = document.querySelector('#loading');
     loading.style.display = 'none';
   }
 
-  function createTableData (data) {
-    let td = document.createElement('td');
-    td.innerText = data;
-    return td;
-  }
-
-  function updatePeers(app) {
-    setInterval(() => {
-      app.peers = manager.getState('known_hosts').filter(peer => !peer.authority);
-      if (app.peers.length > 0) app.hasPeers = true;
-    }, 2000);
-  }
-
-  function updateRenders(app) {
-    setInterval(() => {
-      app.renders = manager.getState('renders');
-    }, 2010)
-  }
-
   function initApp() {
-    let app = new Vue({
-      el: '#app',
-      data: {
-        peers: [],
-        hasPeers: false,
-        renders: [],
-      }
+    ipc.once('state', (event, state) => {
+      console.log('event:', event);
+      console.log('state:', state);
+      app = new Vue({
+        el: '#app',
+        data: state,
+        computed: {
+          peers: function() {
+            return this.known_hosts.filter(peer => !peer.authority);
+          },
+          hasPeers: function() {
+            return this.peers.length > 0 ? true : false
+          }
+        }
+      });
     });
-    return app;
+    /*
+    Vue.component('peers', `
+
+    `);*/
+    ipc.send('getState');
   }
 
-  document.addEventListener('DOMContentLoaded', () => setTimeout(() => {
-    let app = initApp();
+  document.addEventListener('DOMContentLoaded', () => {
+    initApp();
     hideLoadingIcon();
-    updatePeers(app);
-    updateRenders(app);
-  }, 1250));
+  });
+})();

@@ -16,6 +16,8 @@ const createWindow = (width, height) => {
         icon:'./styles/tray.ico'
     });
 
+    logic.attachActionsToWindow(win);
+
     // and load the index.html of the app.
     win.loadFile('index.html');
 

@@ -3,7 +3,7 @@ require('./network/server');
 const networkClient = require('./network/client');
 const manager = require('./data/state_manager');
 const actions = require('./data/actions');
-const { pollForChunks } = require('./data/poll');
+const { pollForMayaBatch, pollForChunks } = require('./data/poll');
 
 networkClient.getKnownNodes().then(() => manager.dispatch(actions.setNodeInfo()));
 pollForMayaBatch(manager);

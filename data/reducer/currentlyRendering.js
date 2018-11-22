@@ -1,4 +1,6 @@
-const { START_CHUNK, CANCEL_CHUNK, ERROR_CHUNK, COMPLETE_CHUNK } = require('../actions');
+const { START_CHUNK, CANCEL_CHUNK, ERROR_CHUNK,
+  COMPLETE_CHUNK, NOT_RENDERING
+} = require('../actions');
 
 
 const currentlyRendering = (state=false, action) => {
@@ -8,6 +10,7 @@ const currentlyRendering = (state=false, action) => {
     case CANCEL_CHUNK:
     case ERROR_CHUNK:
     case COMPLETE_CHUNK:
+    case NOT_RENDERING:
       return false;
     default:
       return state;

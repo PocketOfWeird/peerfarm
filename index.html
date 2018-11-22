@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>Peerfarm</title>
+  <link rel="stylesheet" href="./styles/normalize.css">
+  <link rel="stylesheet" href="./styles/skeleton.css">
   <link rel="stylesheet" href="./styles/window.css">
   <script src="./window/index.js" charset="utf-8"></script>
 </head>
@@ -26,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for-object="peer in peers" :key="peer.id">
+        <tr v-for="peer in peers" :key="peer.id">
           <td>{{peer.hostname}}</td>
           <td>{{peer.ip}}</td>
           <td>{{peer.type}}</td>
@@ -37,7 +39,31 @@
       </tbody>
     </table>
     <table id="renders">
-
+      <caption>Renders</caption>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Start Frame</th>
+          <th>End Frame</th>
+          <th>Chunks</th>
+          <th>Project</th>
+          <th>Scene</th>
+          <th>Output</th>
+          <th>Format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="render in renders" :key="render.renderId">
+          <td>{{render.active ? 'Active' : render.pending ? 'Pending' : render.done ? 'Done' : render.canceled ? 'Canceled' : render.error ? render.errInfo : 'unknown'}}</td>
+          <td>{{render.startF}}</td>
+          <td>{{render.endF}}</td>
+          <td><button @click="showChunks(render.renderId)">Chunks</button> </td>
+          <td>{{render.proj}}</td>
+          <td>{{render.scene}}</td>
+          <td>{{render.outDir}}</td>
+          <td>{{render.format}}</td>
+        </tr>
+      </tbody>
     </table>
     <canvas id="cpu-chart"></canvas>
   </div>

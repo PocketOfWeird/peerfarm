@@ -6,6 +6,7 @@ const actions = require('./data/actions');
 const { pollForChunks } = require('./data/poll');
 
 networkClient.getKnownNodes().then(() => manager.dispatch(actions.setNodeInfo()));
+pollForMayaBatch(manager);
 pollForChunks(manager);
 
 const attachActionsToWindow = win => {
@@ -20,18 +21,17 @@ module.exports = {
   attachActionsToWindow
 };
 // testing only
-/*
+
 const maya = require('./tools/maya');
 const uuidV4 = require('uuid/v4');
 let settings = maya.settings(
   uuidV4(),
-  1,
+  2,
   120,
   '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation',
   '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\scenes\\FX_BOSS_Ocean.0006.mb',
-  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\images',
+  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\images\\test02',
   'exr',
   'perspShape'
 );
 manager.dispatch(actions.submitRender(settings, 5));
-*/

@@ -4,6 +4,7 @@ const SUBMIT_RENDER = 'SUBMIT_RENDER';
 const CANCEL_RENDER = 'CANCEL_RENDER';
 const COMPLETE_RENDER = 'COMPLETE_RENDER';
 const DELETE_RENDER = 'DELETE_RENDER';
+const NOT_RENDERING = 'NOT_RENDERING';
 
 const submitRender = (settings, chunkSize) => {
   const chunks = maya.splitIntoChunks(settings, chunkSize);
@@ -31,13 +32,19 @@ const deleteRender = id => ({
   payload: id
 });
 
+const notRendering = () => ({
+  type: NOT_RENDERING
+})
+
 module.exports = {
   SUBMIT_RENDER,
   CANCEL_RENDER,
   COMPLETE_RENDER,
   DELETE_RENDER,
+  NOT_RENDERING,
   submitRender,
   cancelRender,
   completeRender,
-  deleteRender
+  deleteRender,
+  notRendering
 };

@@ -12,8 +12,6 @@
 
   function initApp() {
     ipc.once('state', (event, state) => {
-      console.log('event:', event);
-      console.log('state:', state);
       app = new Vue({
         el: '#app',
         data: state,
@@ -27,10 +25,6 @@
         }
       });
     });
-    /*
-    Vue.component('peers', `
-
-    `);*/
     ipc.send('getState');
   }
 

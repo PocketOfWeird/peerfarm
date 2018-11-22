@@ -1,3 +1,4 @@
+const find = require('find-process');
 const maya = require('../tools/maya');
 const actions = require('./actions');
 
@@ -7,6 +8,17 @@ const poller = (manager, property, cb) => {
     let state = manager.getState(property);
     cb(state);
   }, interval);
+}
+
+const pollForMayaBatch = (manager) => {
+  setInterval(function () {
+    find('name', 'MayaBatch', true)
+    .then(function (list) {
+      if (list.length < 1) {
+        manager.dispatch(actions.notRendering());
+      }
+    });
+  }, 3000);
 }
 
 const pollForChunks = (manager) => {
@@ -49,5 +61,6 @@ const pollForChunks = (manager) => {
 
 module.exports = {
   poller,
+  pollForMayaBatch,
   pollForChunks
 };

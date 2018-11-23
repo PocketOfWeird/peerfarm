@@ -6,7 +6,7 @@ const actions = require('./data/actions');
 const { pollForMayaRender, pollForChunks } = require('./data/poll');
 
 networkClient.getKnownNodes().then(() => manager.dispatch(actions.setNodeInfo()));
-pollForMayaRender(manager);
+//pollForMayaRender(manager);
 pollForChunks(manager);
 
 const attachActionsToWindow = win => {
@@ -18,7 +18,7 @@ ipc.on('getState', (event, arg) => {
 });
 
 // testing only
-
+/*
 const maya = require('./tools/maya');
 const uuidV4 = require('uuid/v4');
 let settings = maya.settings(
@@ -32,7 +32,7 @@ let settings = maya.settings(
   'perspShape'
 );
 manager.dispatch(actions.submitRender(settings, 5));
-
+*/
 
 module.exports = {
   attachActionsToWindow

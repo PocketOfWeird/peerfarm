@@ -1,11 +1,11 @@
 const fetch = require('node-fetch');
 const { fetchOptions } = require('../../tools')
-const { SET_KNOWN_HOSTS, SET_CHUNK_LOG } = require('../actions');
+const { SET_KNOWN_HOSTS, SET_CHUNK_LOG, NOT_RENDERING } = require('../actions');
 
 
 const send = (state, action) => {
     const ignoredActionTypes = [
-        SET_KNOWN_HOSTS, SET_CHUNK_LOG
+        SET_KNOWN_HOSTS, SET_CHUNK_LOG, NOT_RENDERING
     ];
     if (!action.type.includes('_FROM_PEER') && !ignoredActionTypes.includes(action.type)) {
       let known_hosts = state.known_hosts || [];

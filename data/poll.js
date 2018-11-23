@@ -10,9 +10,9 @@ const poller = (manager, property, cb) => {
   }, interval);
 }
 
-const pollForMayaBatch = (manager) => {
+const pollForMayaRender = (manager) => {
   setInterval(function () {
-    find('name', 'MayaBatch', true)
+    find('name', 'Render')
     .then(function (list) {
       if (list.length < 1) {
         manager.dispatch(actions.notRendering());
@@ -61,6 +61,6 @@ const pollForChunks = (manager) => {
 
 module.exports = {
   poller,
-  pollForMayaBatch,
+  pollForMayaRender,
   pollForChunks
 };

@@ -1,6 +1,8 @@
 const db = require('./local_db');
 const reducer = require('./reducer');
 const middleware = require('./middleware');
+const fs = require('fs');
+let stateChange = 1;
 let win;
 
 const getState = top_level_property => {
@@ -11,7 +13,8 @@ const getState = top_level_property => {
 const setState = newState => {
   db.setState(newState);
   db.write();
-  //state = newState;
+  fs.writeFileSync(`stateChange${stateChange}.txt`, JSON.stringify(newState));
+  stateChange++;
 }
 
 const dispatch = (action, fromPeer) => {

@@ -17,8 +17,8 @@ ipc.on('getState', (event, arg) => {
   event.sender.send('state', manager.getState());
 });
 
-// testing only
 /*
+// testing only
 const maya = require('./tools/maya');
 const uuidV4 = require('uuid/v4');
 let settings = maya.settings(
@@ -27,13 +27,12 @@ let settings = maya.settings(
   120,
   '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation',
   '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\scenes\\FX_BOSS_Ocean.0006.mb',
-  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\images\\test02',
+  '\\\\art-render\\RenderShare\\Goodwin\\OceanSimulation\\images\\test03',
   'exr',
   'perspShape'
 );
 manager.dispatch(actions.submitRender(settings, 5));
 */
-
 module.exports = {
   attachActionsToWindow
 };
